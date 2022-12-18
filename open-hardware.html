@@ -19,6 +19,7 @@
     <div id="OHA-year-selector">Waiting for data from GitHub...</div>
     <div id="focused-outcome"></div>
     <div id="OHA-outcomes"></div>
+    <script src="js-yaml.min.js"></script>
 	<script>
         console.log("test started")
         let yearSelector = document.querySelector("#OHA-year-selector")
@@ -126,26 +127,20 @@
                 .then(response => {
                     let contents = response.text()
                     contents.then((textcontent) => {
-                    console.log(textcontent)
 
                     // parse the textcontents to extract image, title and oneline summary
                     let outcomeData = parseOutcomeString(textcontent)
 
-                    // get filename (e.g. 'cool project.yaml'), remove extension
-                    outcomeName = outcome.name.substring(0, outcome.name.lastIndexOf('.')) || outcome.name
-                    outcomeData.name = outcomeName; // add name to data
-
-
                     // create the card elements
                     let cardImg = document.createElement("img");
-                    cardImg.src=outcomeData["project-banner"];
+                    cardImg.src=outcomeData.image;
                     let outcomeCard = document.createElement("div");
                     outcomeCard.classList.add("OHA-outcome");
                     let cardHeader = document.createElement("div");
                     cardHeader.classList.add("OHA-card-header")
-                    cardHeader.innerHTML = outcomeName + "✨";
+                    cardHeader.innerHTML = outcomeData.title + "✨";
                     let cardContents = document.createElement("div");
-                    cardContents.innerHTML = textcontent
+                    cardContents.innerHTML = outcomeData.description
                     cardContents.classList.add("OHA-card-contents")
 
                     outcomeCard.appendChild(cardImg)
@@ -160,23 +155,10 @@
 
         // extract useful information from the contents of the .yml file
         // and return it as an object; i.e. {key:value, key:value}
-        // we deliberately do not use an external yaml parser as our format is simple and we want
-        // to avoid dependencies that can break and or get abused
+        // we use the js-yaml library 4.1.0 (https://github.com/nodeca/js-yaml) for parsing 
         function parseOutcomeString(outcomeString) {
             console.log("PARSING>>>>>>>>")
-            outcome = {};
-            for (line of outcomeString.split("\n")) {
-                if (line.length !== 0) {
-                    console.log(line)
-                    let linesections = line.split(":")
-                    const key = linesections.shift();
-                    console.log(linesections)
-                    outcome[key.trim()] = linesections.join(":").trim()
-                }
-            }        
-
-            console.log(outcome)
-            return outcome
+            return jsyaml.load(outcomeString);
         }
 
         // function that builds an 'expanded card' when a project is clicked
@@ -194,17 +176,17 @@
             // header
             let cardHeader = document.createElement("div");
             cardHeader.classList.add("OHA-card-header")
-            cardHeader.innerHTML = outcomeData.name + "✨";
+            cardHeader.innerHTML = outcomeData.title + "✨";
 
             // details
             let cardContents = document.createElement("div");
-            cardContents.innerHTML = outcomeData.details
+            cardContents.innerHTML = outcomeData.description
             cardContents.classList.add("OHA-card-contents")
 
             // homepage and close button
             let homepagebutton = document.createElement("button");
             homepagebutton.innerText  = "Project Homepage"
-            homepagebutton.onclick = () => { window.open(outcomeData["project-homepage"], "_blank")}
+            homepagebutton.onclick = () => { window.open(outcomeData["project-link"], "_blank")}
 
             let closebutton = document.createElement("button");
             closebutton.innerText  = "Close"

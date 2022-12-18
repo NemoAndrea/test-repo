@@ -66,11 +66,11 @@ header {
 .OHA-card-header {
     font-family: 'Modak', cursive;
     font-size: 1.6em;
-    padding:8px;
+    padding:14px;
 }
 
-.OHA-card-content {
-    padding: 8px    
+.OHA-card-contents {
+    padding: 14px    
 }
 
 .OHA-outcome {

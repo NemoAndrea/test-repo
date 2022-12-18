@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>HTML 5 Boilerplate</title>
+    <link rel="stylesheet" href="style.css">
+  </head>
+  <body>
+    <script src="js-yaml.min.js"></script>
+	<script >
+        test = `title: SpotiStation
+description: Spotify-enabled music player built around a raspberry pi and rgb matrix
+display. Streams and controls playback as an independent device and uses RGB
+matrix display as interface.
+intended-use: The design is focussed on being accessible to people with physical and
+cognitive disabilities by use of few and large buttons and simple UI. It
+should allow anyone to enjoy music without supervision.
+keywords:
+- spotify
+- 3D-printing
+- raspberry-pi
+- accessibility
+- music
+development-stage: released
+development-plans: The project has had an initial release, with some ‘field testing’ to boot.
+The hardware and software are functional, if a little rough around some of the edges. 
+Certainly areas to improve on, but none that require immediate attention. All the design
+files and code are available for reproduction - provided you have basic (electronics) tinkering
+skills.
+project-link: https://github.com/NemoAndrea/SpotiStation
+image: https://raw.githubusercontent.com/NemoAndrea/SpotiStation/main/media/banner.png
+license:
+hardware: GPL-3.0-only
+licensor:
+name: Nemo Andrea
+okh-manifest-version: 1.0.0
+date-created: 2022-09-23
+manifest-author:
+name: Nemo Andrea
+contact:
+social:
+    - platform: twitter
+    user-handle: cursed_tubule
+    `
+
+
+    
+    // console.log(lineIterator.next().value, lineIterator.next().value);
+    // console.log(lineIterator.next().value, lineIterator.next().done);
+
+    const doc = jsyaml.load('title: SpotiStation\nbonk: conk');
+    console.log(doc);
+
+
+    // outcome = {};
+
+    // lines = Preprocess(test)
+
+    // console.log(outcome)
+
+    // lineIterator = lines.split("\n").entries()
+    // parseYamlLine(lineIterator, outcome)
+
+    // function Preprocess(data) {
+    //     out =""
+    //     lines = data.split("\n")
+    //     for (let [i, line] of lines.entries()) {
+    //         if (i!==lines.length){
+    //         if (!lines[i+1].includes(":") && !(lines[i+1].trim()[0]=="-")) {
+    //             out += line;
+    //             console.log("adwadadw")
+    //         } else {
+    //             out += line + "\n";
+    //             console.log("normal line")
+    //         }
+    //          }
+    //     }
+    //     console.log("out is")
+    //     console.log(out)
+    //     return out
+    // }
+
+    // function parseYamlLine(lineIterator, yaml) {
+    //     result = lineIterator.next()
+    //     if (!result.done) {
+    //         currentline = result.value[1]
+    //         console.log(`current next() line is ${currentline}`);
+    //         let linesections = currentline.split(":")
+           
+    //         if (linesections.length < 1) { // if line contains item of a list (e.g. ' - twitter') or is a continuation of string on previous line
+    //             parseYamlLine(lineIterator, yaml)
+    //         } else if (linesections.length < 2)  {  // if line is an opener for subcategories (e.g. 'test: ')
+    //             key = linesections.shift();  // get key, and remove key from linesections
+    //             yaml[key] = linesections.join(":").trim()
+    //             parseYamlLine(lineIterator, yaml[key])
+    //         } else { // simple key:value situation
+    //             key = linesections.shift();  // get key, and remove key from linesections
+    //             yaml[key] = linesections.join(":").trim()
+    //             parseYamlLine(lineIterator, yaml)
+    //         }
+    //     }
+    // }
+
+        
+    </script>
+  </body>
+</html>

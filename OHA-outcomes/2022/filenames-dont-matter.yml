@@ -1,7 +1,7 @@
 title: SpotiStation
 description: Spotify-enabled music player built around a raspberry pi and rgb matrix
-  display. Streams and controls playback as an independent device and uses RGB
-  matrix display as interface.
+display. Streams and controls playback as an independent device and uses RGB
+matrix display as interface.
 intended-use: The design is focussed on being accessible to people with physical and
   cognitive disabilities by use of few and large buttons and simple UI. It
   should allow anyone to enjoy music without supervision.

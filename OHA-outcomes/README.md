@@ -55,3 +55,6 @@ contact:
       user-handle: cursed_tubule
 ```
 
+### External libraries
+
+For yaml parsing we use [js-yaml](https://www.npmjs.com/package/js-yaml); specifically the minified version 4.1.0
