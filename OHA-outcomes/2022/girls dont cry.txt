@@ -1,8 +1,0 @@
----
-project-homepage: https://www.youtube.com/watch?v=43wIsMMTUZo&list=PLrB5WxXkR3fcJitLGbJMrEP7QL9IH7X_j&index=1
-project-banner: https://upload.wikimedia.org/wikipedia/commons/thumb/c/c0/Crying-girl.jpg/220px-Crying-girl.jpg
----
-
-## Project one-liner
-
-An absolute banger by Thuy (look up on youtube)

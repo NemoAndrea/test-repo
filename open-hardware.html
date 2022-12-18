@@ -58,7 +58,7 @@
             })
         }
 
-        // each year has its own folder, containing txt files for each project
+        // each year has its own folder, containing yaml files for each project
         // we add a button to the page that a user can click to load that year
         // we do not load all years immediately, as that would require a lot of API calls and
         // eventually lead to problems (in 10 years time)
@@ -103,11 +103,11 @@
                 outcomes.then((outcomes) => {
                     console.log("outcomes >>>")
                     for (outcome of outcomes) {
-                        if (outcome.name.split('.').pop() === "txt") {
+                        if (outcome.name.split('.').pop() === "yml") {
                             console.log(outcome)
                             processOutcome(outcome, entriesEl)
                         }  else {
-                            console.log("not a txt outcome: ")
+                            console.log("not a yaml outcome: ")
                             console.log(outcome)
                         }
                     }
@@ -131,7 +131,7 @@
                     // parse the textcontents to extract image, title and oneline summary
                     let outcomeData = parseOutcomeString(textcontent)
 
-                    // get filename (e.g. 'çool project.txt'), remove extension
+                    // get filename (e.g. 'cool project.yaml'), remove extension
                     outcomeName = outcome.name.substring(0, outcome.name.lastIndexOf('.')) || outcome.name
                     outcomeData.name = outcomeName; // add name to data
 
@@ -158,14 +158,14 @@
                 })
         }
 
-        // extract useful information from the contents of the .txt file
+        // extract useful information from the contents of the .yml file
         // and return it as an object; i.e. {key:value, key:value}
+        // we deliberately do not use an external yaml parser as our format is simple and we want
+        // to avoid dependencies that can break and or get abused
         function parseOutcomeString(outcomeString) {
             console.log("PARSING>>>>>>>>")
             outcome = {};
-            const metadata = outcomeString.split('---')[1];
-            console.log(metadata)
-            for (line of metadata.split("\n")) {
+            for (line of outcomeString.split("\n")) {
                 if (line.length !== 0) {
                     console.log(line)
                     let linesections = line.split(":")
@@ -173,15 +173,7 @@
                     console.log(linesections)
                     outcome[key.trim()] = linesections.join(":").trim()
                 }
-            }
-            outcome.details = outcomeString.split('---')[2]
-        
-            // for (line of lines) {
-            //     if (line.length !== 0) {
-            //         console.log(line)
-            //     }
-                
-            // }
+            }        
 
             console.log(outcome)
             return outcome

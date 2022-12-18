@@ -1,8 +1,0 @@
----
-project-homepage: https://www.youtube.com/watch?v=_RW_fIWuG2c
-project-banner: https://i.ytimg.com/vi/_RW_fIWuG2c/hqdefault.jpg
----
-
-## Project one-liner
-
-Monkey on the CAR! 
